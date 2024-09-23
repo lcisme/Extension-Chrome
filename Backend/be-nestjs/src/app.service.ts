@@ -6,7 +6,10 @@ export class AppService {
     return 'Hello World!';
   }
 
-  private notes = [];
+  private notes = [
+    { id: 1, content: '1' },
+    { id: 2, content: '2' },
+  ];
 
   getNotes() {
     return this.notes;
@@ -19,7 +22,13 @@ export class AppService {
   }
 
   deleteNote(id: number) {
-    this.notes = this.notes.filter((note) => note.id !== id);
-    return { success: true };
+    const initialLength = this.notes.length;
+    this.notes = this.notes.filter((note) => note.id == Number(id));
+
+    if (this.notes.length < initialLength) {
+      return { success: true, message: `Note with id ${id} deleted.` };
+    } else {
+      return { success: false, message: `Note with id ${id} not found.` };
+    }
   }
 }

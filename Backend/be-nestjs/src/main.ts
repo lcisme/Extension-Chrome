@@ -5,6 +5,7 @@ import {
   ExpressAdapter,
   NestExpressApplication,
 } from '@nestjs/platform-express';
+import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(
@@ -21,12 +22,18 @@ async function bootstrap() {
   const config = new DocumentBuilder()
     .setTitle('EXTENSION CHROME')
     .setVersion('1.0')
-    .addTag('example')
     .build();
 
+  app.useGlobalPipes(
+    new ValidationPipe({
+      whitelist: true,
+      forbidNonWhitelisted: true,
+      transform: true,
+    }),
+  );
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('docs', app, document);
-  console.log(`🟢listening at ${process.env.PORT})} 🟢\n`);
+  console.log(`🟢 listening at ${process.env.PORT} 🟢\n`);
   await app.listen(process.env.PORT);
 }
 bootstrap();

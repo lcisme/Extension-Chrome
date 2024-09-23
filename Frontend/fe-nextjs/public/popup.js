@@ -1,4 +1,4 @@
-const apiBaseUrl = "http://localhost:3001/app/";
+const apiBaseUrl = "http://localhost:3001/app";
 
 document.getElementById("addNoteBtn").addEventListener("click", async () => {
   const noteContent = document.getElementById("newNote").value;
@@ -14,7 +14,7 @@ document.getElementById("addNoteBtn").addEventListener("click", async () => {
 
     const newNote = await response.json();
     displayNote(newNote);
-    document.getElementById("newNote").value = ""; // Clear input field
+    document.getElementById("newNote").value = "";
   }
 });
 
@@ -42,5 +42,4 @@ async function deleteNote(id) {
   document.getElementById(`note-${id}`).remove();
 }
 
-// Fetch notes when popup is opened
 fetchNotes();
