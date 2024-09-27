@@ -1,7 +1,7 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { SecretService } from 'libs/modules/global/secret/secret.service';
 import { OpenAI } from 'openai';
-import { ChatCompletionMessageParam, ChatModel } from 'openai/resources';
+import { ChatCompletionMessageParam } from 'openai/resources';
 
 @Injectable()
 export class OpenAiService {
@@ -14,12 +14,27 @@ export class OpenAiService {
     });
   }
 
-  async askChatGPT(
+  // async askChatGPT(
+  //   messages: ChatCompletionMessageParam[],
+  //   model: string,
+  // ): Promise<string | object> {
+  //   const chatCompletes = await this.openAiService.chat.completions.create({
+  //     model: model,
+  //     messages,
+  //     response_format: {
+  //       type: 'text',
+  //     },
+  //   });
+
+  //   return chatCompletes.choices[0].message.content;
+  // }
+
+  async askAI(
     messages: ChatCompletionMessageParam[],
-    model: ChatModel,
-  ): Promise<string | object> {
+    model: string,
+  ): Promise<string> {
     const chatCompletes = await this.openAiService.chat.completions.create({
-      model: model,
+      model,
       messages,
       response_format: {
         type: 'text',

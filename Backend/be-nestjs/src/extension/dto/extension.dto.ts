@@ -1,7 +1,6 @@
 import { IsEnum, IsOptional, IsString } from 'class-validator';
 import { AiEnum, LanguageEnum, OptionEnum } from '../extension.enum';
 import { ApiProperty } from '@nestjs/swagger';
-import { ChatModel } from 'openai/resources';
 
 export class ExtensionDto {
   @ApiProperty({ required: true, default: LanguageEnum.VIETNAMESE })
@@ -16,7 +15,7 @@ export class ExtensionDto {
   // @IsString({ message: 'you must provide a model parameter' })
   @IsString()
   @IsOptional()
-  model: ChatModel;
+  model: string;
 
   @ApiProperty({ required: true, default: OptionEnum.translate })
   @IsEnum(OptionEnum, { message: 'Option is not exist' })
