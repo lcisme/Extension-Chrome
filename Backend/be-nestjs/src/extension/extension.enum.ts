@@ -1,6 +1,8 @@
 export enum OptionEnum {
   translate = 'translate',
   optimize = 'optimize',
+  grammarCheck = 'grammarCheck',
+  summary = 'summary',
 }
 
 export enum AiEnum {

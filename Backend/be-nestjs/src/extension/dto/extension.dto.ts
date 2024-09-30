@@ -11,15 +11,16 @@ export class ExtensionDto {
   @IsString({ message: 'you must provide a text parameter' })
   text: string;
 
-  @ApiProperty({ required: false, default: 'gpt-4o' })
+  @ApiProperty({ required: false, default: 'gpt-3.5-turbo' })
   // @IsString({ message: 'you must provide a model parameter' })
   @IsString()
   @IsOptional()
   model: string;
 
   @ApiProperty({ required: true, default: OptionEnum.translate })
-  @IsEnum(OptionEnum, { message: 'Option is not exist' })
-  option: OptionEnum;
+  // @IsEnum(OptionEnum, { message: 'Option is not exist' })
+  @IsString()
+  option: string;
 
   @ApiProperty({ required: true, default: AiEnum.gpt })
   @IsEnum(AiEnum, { message: 'AI is not exist' })

@@ -5,13 +5,10 @@ import { Document, Types } from 'mongoose';
 })
 export class Extension extends Document<Types.ObjectId> {
   @Prop()
-  prompt: string;
+  option: string;
 
   @Prop()
   promptInstruction: string;
-
-  @Prop()
-  nameModelAi: string;
 }
 
 export const ExtensionSchema = SchemaFactory.createForClass(Extension);

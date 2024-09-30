@@ -1,16 +1,13 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsString } from 'class-validator';
+import { OptionEnum } from '../extension.enum';
 
 export class CreateExtensionDto {
-  @ApiProperty({ default: 'string' })
+  @ApiProperty({ default: 'translate' })
   @IsString()
-  prompt: string;
+  option: OptionEnum;
 
   @ApiProperty({ default: 'string' })
   @IsString()
   promptInstruction: string;
-
-  @ApiProperty({ default: 'string' })
-  @IsString()
-  nameModelAi: string;
 }
